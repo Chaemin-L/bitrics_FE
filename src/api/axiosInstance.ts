@@ -1,11 +1,12 @@
 import axios, {
+  Axios,
   AxiosError,
   AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
 
-const axiosInstance = axios.create({
+const axiosInstance: Axios = axios.create({
   baseURL: "/",
   headers: {
     "Content-Type": "application/json",
@@ -15,7 +16,7 @@ const axiosInstance = axios.create({
 const isDev = process.env.NODE_ENV === "development";
 
 const devLog = (log: string) => {
-  isDev ? console.log(log) : null;
+  return isDev ? console.log(log) : null;
 };
 
 const onRequest = (config: InternalAxiosRequestConfig) => {
