@@ -1,8 +1,12 @@
 import FilteringHeader from "@/components/news/FilteringHeader";
 import ListView from "@/components/news/ListView";
-import { useState } from "react";
+import { getNews } from "@/lib/crawling";
+import { useEffect, useState } from "react";
 
 const NewsPage = () => {
+  useEffect(() => {
+    getNews();
+  }, []);
   const [selected, setSelected] = useState("crypto");
   const keywords = [
     { key: "crypto", label: "가상화폐" },

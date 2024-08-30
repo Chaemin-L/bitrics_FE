@@ -8,9 +8,6 @@ import axios, {
 
 const axiosInstance: Axios = axios.create({
   baseURL: "/",
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 const isDev = process.env.NODE_ENV === "development";

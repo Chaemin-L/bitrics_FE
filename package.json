@@ -2,6 +2,7 @@
   "name": "bitrics_fe",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://search.hankyung.com",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "cheerio": "^1.0.0",
     "craco-alias": "^3.0.1",
     "postcss": "^8.4.41",
     "tailwind-scrollbar-hide": "^1.1.7",
