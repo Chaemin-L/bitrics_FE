@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import GlobalLayout from "@/layouts/global";
-import LandingPage from "@/pages/landing";
+import HomePage from "@/pages/home";
 import NewsPage from "@/pages/news";
 
 export const ROUTES: RouteObject[] = [
   {
     path: "/",
-    element: <LandingPage />,
+    element: <HomePage />,
   },
   {
     path: "/news",
