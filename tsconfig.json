@@ -19,7 +19,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "craco.config.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "craco.config.js",
+    "tailwind.config.js"
+  ],
   "extends": "./tsconfig.paths.json",
   "exclude": ["node_modules", "**/node_modules/*"]
 }
