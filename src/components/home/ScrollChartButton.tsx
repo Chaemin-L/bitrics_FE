@@ -38,7 +38,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
   return (
     <div
       ref={scrollContainerRef}
-      className="overflow-x-hidden whitespace-nowrap w-full cursor-grab"
+      className="overflow-x-hidden whitespace-nowrap w-full cursor-grab select-none"
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeaveOrUp}
       onMouseUp={handleMouseLeaveOrUp}
@@ -52,7 +52,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
           >
             <div className="text-sm font-medium">{button.label}</div>
             <div className="text-lg font-bold">{button.value}</div>
-            <div className={`text-sm ${button.isPositive ? 'text-red' : 'text-blue'}`}>
+            <div className={`text-xs ${button.isPositive ? 'text-red' : 'text-blue'}`}>
               {button.change}
             </div>
           </div>
