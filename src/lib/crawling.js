@@ -19,10 +19,9 @@ export const getNews = async (keyword) => {
 
   const newsHref = $(".article .txt_wrap a")
     .map(function () {
-      return $(this).prop("href");
+      return $(this).has("em.tit").prop("href");
     })
     .toArray();
-  console.log(newsHref);
 
   const newsTitle = $(".article .txt_wrap .tit")
     .contents()

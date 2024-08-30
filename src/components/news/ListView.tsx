@@ -1,15 +1,22 @@
+import { getNews } from "@/lib/crawling";
 import { INews } from "@/pages/news";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 interface IListView {
-  listData: INews[];
+  selected: string;
 }
 
 const ListView = (props: IListView) => {
-  const { listData } = props;
+  const [news, setNews] = useState<INews[]>([]);
+  const { selected } = props;
+
+  useEffect(() => {
+    getNews(selected).then((res) => setNews(res));
+  }, [selected]);
   return (
     <div className="bg-purple-600 rounded-[10px] p-5 divide-y divide-purple-100 ">
-      {listData.map((item, index) => (
+      {news.map((item, index) => (
         <ListItem key={index} {...item} />
       ))}
     </div>

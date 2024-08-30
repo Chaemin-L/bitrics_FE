@@ -1,7 +1,6 @@
 import FilteringHeader from "@/components/news/FilteringHeader";
 import ListView from "@/components/news/ListView";
-import { getNews } from "@/lib/crawling";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export interface INews {
   title: string;
@@ -12,7 +11,6 @@ export interface INews {
 }
 
 const NewsPage = () => {
-  const [news, setNews] = useState<INews[]>([]);
   const [selected, setSelected] = useState("crypto");
   const keywords = [
     { key: "crypto", label: "가상화폐" },
@@ -20,19 +18,17 @@ const NewsPage = () => {
     { key: "economy", label: "경제" },
   ];
 
-  useEffect(() => {
-    getNews(selected).then((res) => setNews(res));
-  }, [selected]);
-
   return (
-    <div className="flex flex-col gap-6">
-      <FilteringHeader
-        keywords={keywords}
-        selected={selected}
-        setSelected={setSelected}
-      />
-      <ListView listData={news} />
-    </div>
+    <>
+      <div className="flex flex-col gap-6">
+        <FilteringHeader
+          keywords={keywords}
+          selected={selected}
+          setSelected={setSelected}
+        />
+        <ListView selected={selected} />
+      </div>
+    </>
   );
 };
 
