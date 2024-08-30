@@ -1,5 +1,6 @@
 import FilteringHeader from "@/components/news/FilteringHeader";
 import ListView from "@/components/news/ListView";
+// import ListView from "@/components/news/ListView";
 import { useState } from "react";
 
 export interface INews {
@@ -20,7 +21,7 @@ const NewsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 h-full">
         <FilteringHeader
           keywords={keywords}
           selected={selected}

@@ -1,24 +1,35 @@
 import { getNews } from "@/lib/crawling";
 import { INews } from "@/pages/news";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../common/Loading";
 
 interface IListView {
   selected: string;
 }
 
 const ListView = (props: IListView) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [news, setNews] = useState<INews[]>([]);
   const { selected } = props;
 
-  useEffect(() => {
-    getNews(selected).then((res) => setNews(res));
+  const getData = useCallback(async () => {
+    setIsLoading(true);
+    await getNews(selected).then((res) => setNews(res));
+    setIsLoading(false);
   }, [selected]);
+
+  useEffect(() => {
+    getData();
+  }, [selected, getData]);
+
   return (
-    <div className="bg-purple-600 rounded-[10px] p-5 divide-y divide-purple-100 ">
-      {news.map((item, index) => (
-        <ListItem key={index} {...item} />
-      ))}
+    <div className="bg-purple-600 rounded-[10px] p-5 divide-y divide-purple-100 w-full min-h-screen">
+      {isLoading ? (
+        <Loading />
+      ) : (
+        news.map((item, index) => <ListItem key={index} {...item} />)
+      )}
     </div>
   );
 };
