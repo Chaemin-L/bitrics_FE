@@ -42,7 +42,9 @@ const TabMenu: React.FC<TabMenuProps> = ({ tabs, children }) => {
             setSelected={setSelectedFilter}
           />
         </div>
-        <div className="text-white mt-4 -mx-[30px]">{children[activeTab]}</div>
+        <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+          {children[activeTab]}
+        </div>
       </div>
     </div>
   );
