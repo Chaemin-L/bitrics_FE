@@ -3,6 +3,7 @@ import ScrollChartButton from "@/components/home/ScrollChartButton";
 import TabMenu from "@/components/home/TabMenu";
 import FilteringHeader from "@/components/news/FilteringHeader";
 import CryptoList from "@/components/home/CryptoList";
+import MarketCapList from "@/components/home/MarketCapList";
 
 const HomePage = () => {
   const buttons = [
@@ -110,7 +111,9 @@ const HomePage = () => {
             <CryptoList data={data} />
           </div>
         </div>
-        <div>시가총액 탭</div>
+        <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+          <MarketCapList />
+        </div>
         <div>관심 탭</div>
       </TabMenu>
     </div>
