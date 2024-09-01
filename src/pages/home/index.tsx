@@ -1,4 +1,5 @@
 import ScrollChartButton from "@/components/home/ScrollChartButton";
+import TabMenu from "@/components/home/TabMenu";
 
 const HomePage = () => {
   const buttons = [
@@ -33,7 +34,11 @@ const HomePage = () => {
   return (
     <div>
       <ScrollChartButton buttons={buttons} />
-      {/* 다른 컨텐츠 */}
+      <TabMenu tabs={["김프", "시가총액", "관심"]}>
+        <div>김프 탭</div>
+        <div>시가총액 탭</div>
+        <div>관심 탭</div>
+      </TabMenu>
     </div>
   );
 };

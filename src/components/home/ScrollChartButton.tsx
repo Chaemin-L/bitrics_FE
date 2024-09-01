@@ -43,7 +43,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
 
   return (
     <div className="-mx-[30px]">
-      <div className="relative">
+      <div>
         <div
           ref={scrollContainerRef}
           className="overflow-x-hidden whitespace-nowrap w-full cursor-pointer select-none"
@@ -78,7 +78,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
           </div>
         </div>
         {selectedButtonIndex !== null && (
-          <div className="absolute top-full bg-gray-200 p-4 mt-2 w-[375px]">
+          <div className="bg-contrast-200 p-4 mt-4 w-[375px]">
             <p>차트 나타나는 곳</p>
           </div>
         )}
