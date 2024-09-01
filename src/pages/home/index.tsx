@@ -1,5 +1,7 @@
+import { useState } from "react";
 import ScrollChartButton from "@/components/home/ScrollChartButton";
 import TabMenu from "@/components/home/TabMenu";
+import FilteringHeader from "@/components/news/FilteringHeader";
 import CryptoList from "@/components/home/CryptoList";
 
 const HomePage = () => {
@@ -30,6 +32,13 @@ const HomePage = () => {
     },
     { label: "BTC 롱", value: "66.80%", change: "", isPositive: true },
     { label: "BTC 숏", value: "33.20%", change: "", isPositive: true },
+  ];
+
+  const [selectedFilter, setSelectedFilter] = useState("KRW");
+  const keywords = [
+    { key: "KRW", label: "KRW" },
+    { key: "BTC", label: "BTC" },
+    { key: "USDT", label: "USDT" },
   ];
 
   const data = [
@@ -90,7 +99,16 @@ const HomePage = () => {
       <ScrollChartButton buttons={buttons} />
       <TabMenu tabs={["김프", "시가총액", "관심"]}>
         <div>
-          <CryptoList data={data} />
+          <div className="mt-4">
+            <FilteringHeader
+              keywords={keywords}
+              selected={selectedFilter}
+              setSelected={setSelectedFilter}
+            />
+          </div>
+          <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+            <CryptoList data={data} />
+          </div>
         </div>
         <div>시가총액 탭</div>
         <div>관심 탭</div>

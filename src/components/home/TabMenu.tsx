@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import FilteringHeader from "../news/FilteringHeader";
-
 interface TabMenuProps {
   tabs: string[];
   children: React.ReactNode[];
@@ -9,12 +7,6 @@ interface TabMenuProps {
 
 const TabMenu: React.FC<TabMenuProps> = ({ tabs, children }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const [selectedFilter, setSelectedFilter] = useState("KRW");
-  const keywords = [
-    { key: "KRW", label: "KRW" },
-    { key: "BTC", label: "BTC" },
-    { key: "USDT", label: "USDT" },
-  ];
 
   return (
     <div className="max-w-xl mx-auto mt-4">
@@ -35,16 +27,7 @@ const TabMenu: React.FC<TabMenuProps> = ({ tabs, children }) => {
             </div>
           ))}
         </div>
-        <div className="mt-4">
-          <FilteringHeader
-            keywords={keywords}
-            selected={selectedFilter}
-            setSelected={setSelectedFilter}
-          />
-        </div>
-        <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
-          {children[activeTab]}
-        </div>
+        <div>{children[activeTab]}</div>
       </div>
     </div>
   );
