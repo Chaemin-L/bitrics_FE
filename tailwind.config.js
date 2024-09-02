@@ -29,7 +29,17 @@ module.exports = {
       boxShadow: {
         sm: "0 4px 4px 0 rgba(0,0,0,0.25)",
       },
+      keyframes: {
+        rotation: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
