@@ -24,7 +24,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
 
   return (
     <div>
-      <div className="flex justify-between p-2 border-b border-contrast-300 text-sm text-bold">
+      <div className="flex justify-between p-2 px-4 border-b border-purple-100 text-sm text-bold">
         <div className="w-1/5 text-left">한글명</div>
         <div className="w-1/5 text-right">현재가</div>
         <div className="w-1/5 text-right">김프</div>
@@ -34,7 +34,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
       {data.map((item, index) => (
         <div key={index}>
           <div
-            className="flex justify-between p-2 border-b border-contrast-300 text-xs cursor-pointer"
+            className="flex justify-between p-2 px-4 border-b border-purple-100 text-xs cursor-pointer"
             onClick={() => handleRowClick(index)}
           >
             <div className="w-1/5 text-left">

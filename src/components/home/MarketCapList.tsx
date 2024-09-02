@@ -41,7 +41,7 @@ const MarketCapList: React.FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between p-2 border-b border-contrast-300 text-sm text-bold">
+      <div className="flex justify-between p-2 border-b border-purple-100 text-sm text-bold">
         <div className="w-1/6 text-center">순위</div>
         <div className="w-2/6 text-left">이름</div>
         <div
@@ -66,7 +66,7 @@ const MarketCapList: React.FC = () => {
       {data.map((item, index) => (
         <div
           key={index}
-          className="flex justify-between p-2 border-b border-contrast-300 text-xs"
+          className="flex justify-between p-2 border-b border-purple-100 text-xs"
         >
           <div className="w-1/6 text-center">{index + 1}</div>
           <div className="w-2/6 text-left">

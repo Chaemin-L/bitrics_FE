@@ -46,7 +46,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
       <div>
         <div
           ref={scrollContainerRef}
-          className="overflow-x-hidden whitespace-nowrap w-full cursor-pointer select-none"
+          className="scrollbar-hide overflow-x-auto whitespace-nowrap w-full cursor-pointer select-none"
           onMouseDown={handleMouseDown}
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
@@ -57,8 +57,10 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
               <div key={index} className="flex-shrink-0">
                 <div
                   className={clsx(
-                    `bg-purple-600 text-white p-4 rounded-[10px] min-w-[125px] min-h-[96px]`,
-                    selectedButtonIndex === index ? "bg-purple-300" : ""
+                    `text-white p-4 rounded-[10px] min-w-[125px] min-h-[96px]`,
+                    selectedButtonIndex === index
+                      ? "bg-purple-400"
+                      : "bg-purple-600"
                   )}
                   onClick={() => handleButtonClick(index)}
                 >
@@ -78,7 +80,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
           </div>
         </div>
         {selectedButtonIndex !== null && (
-          <div className="bg-contrast-200 p-4 mt-4 w-[375px]">
+          <div className="bg-contrast-200 p-4 mt-4 w-full">
             <p>차트 나타나는 곳</p>
           </div>
         )}

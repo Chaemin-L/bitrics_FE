@@ -11,7 +11,7 @@ const TabMenu: React.FC<TabMenuProps> = ({ tabs, children }) => {
   return (
     <div className="max-w-xl mx-auto mt-4">
       <div>
-        <div className="flex border-b border-contrast-300">
+        <div className="flex border-b border-purple-100">
           {tabs.map((tab, index) => (
             <div
               key={index}
