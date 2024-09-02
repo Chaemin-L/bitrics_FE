@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TradingViewWidget from "./TradingViewWidget";
 
 interface CryptoData {
   name: string;
@@ -78,8 +79,8 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
           </div>
           {/* 토글된 경우에만 차트 표시 */}
           {selectedIndex === index && (
-            <div className="p-2 border-b border-contrast-300 bg-purple-700 text-xs text-gray-300">
-              <p>차트 나타나는 공간</p>
+            <div className="p-2 border-b border-contrast-300 bg-purple-700 text-xs text-gray-300 h-[300px]">
+              <TradingViewWidget />
             </div>
           )}
         </div>

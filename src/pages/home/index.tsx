@@ -45,7 +45,7 @@ const HomePage = () => {
   const data = [
     {
       name: "비트코인",
-      market: "BTC-KRW",
+      market: "KRW-BTC",
       currentPrice: "229,526백만",
       kpPercent: 1.8,
       kpPrice: "1,422,880",
@@ -55,7 +55,7 @@ const HomePage = () => {
     },
     {
       name: "이더리움",
-      market: "BTC-KRW",
+      market: "KRW-ETH",
       currentPrice: "18,526백만",
       kpPercent: -2.3,
       kpPrice: "-1,422,880",
@@ -65,7 +65,7 @@ const HomePage = () => {
     },
     {
       name: "리플",
-      market: "BTC-KRW",
+      market: "KRW-XRP",
       currentPrice: "526만",
       kpPercent: 3.2,
       kpPrice: "1,422,880",
@@ -74,8 +74,8 @@ const HomePage = () => {
       tradingVolume: "10,9555,000",
     },
     {
-      name: "솔라나",
-      market: "BTC-KRW",
+      name: "네오",
+      market: "KRW-NEO",
       currentPrice: "26백만",
       kpPercent: 0.8,
       kpPrice: "1,422,880",
@@ -84,8 +84,8 @@ const HomePage = () => {
       tradingVolume: "30,9555,000",
     },
     {
-      name: "에이다",
-      market: "BTC-KRW",
+      name: "메탈",
+      market: "KRW-MTL",
       currentPrice: "1,526만",
       kpPercent: -1.5,
       kpPrice: "-1,422,880",
