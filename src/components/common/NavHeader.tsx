@@ -40,7 +40,7 @@ const NavHeader = () => {
               <li
                 key={route.path}
                 className={clsx(
-                  "font-bold text-[16px] text-contrast-300 ",
+                  "font-bold text-[16px] text-contrast-300 transition-colors ",
                   pathname === route.path
                     ? "text-white hover:text-white"
                     : "hover:text-contrast-400"

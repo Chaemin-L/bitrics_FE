@@ -18,7 +18,7 @@ const FilteringHeader = (props: Props) => {
             `rounded-[20px] w-fit  px-4 py-2 shadow-sm  text-sm cursor-pointer  font-bold  transition-colors `,
             keyword.key === selected
               ? "bg-purple-300 text-white"
-              : "text-contrast-300 bg-purple-500"
+              : "text-contrast-300 bg-purple-500 hover:bg-purple-400 "
           )}
           onClick={() => setSelected(keyword.key)}
         >
