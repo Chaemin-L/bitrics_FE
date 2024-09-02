@@ -1,10 +1,14 @@
+import NavHeader from "@/components/common/NavHeader";
 import { Outlet } from "react-router-dom";
 
 const GlobalLayout = () => {
   return (
     <div className="bg-black h-screen">
-      <div className="relative max-w-[600px] m-auto px-[30px] py-5 bg-purple-700 h-full overflow-x-hidden scrollbar-hide">
-        <Outlet />
+      <div className="max-w-[600px] m-auto bg-purple-700 h-full overflow-x-hidden scrollbar-hide">
+        <NavHeader />
+        <div className="relative p-7">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
