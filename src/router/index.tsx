@@ -2,6 +2,7 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import GlobalLayout from "@/layouts/global";
 import HomePage from "@/pages/home";
 import NewsPage from "@/pages/news";
+import TermPage from "@/pages/term";
 
 type CustomRouteObject = {
   label?: string;
@@ -22,8 +23,8 @@ export const ROUTES: CustomRouteObject[] = [
     show: true,
   },
   {
-    path: "/terms",
-    element: <NewsPage />,
+    path: "/term",
+    element: <TermPage />,
     label: "용어",
     show: true,
   },
