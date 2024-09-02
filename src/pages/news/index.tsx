@@ -20,16 +20,14 @@ const NewsPage = () => {
   ];
 
   return (
-    <>
-      <div className="flex flex-col gap-6 h-full">
-        <FilteringHeader
-          keywords={keywords}
-          selected={selected}
-          setSelected={setSelected}
-        />
-        <ListView selected={selected} />
-      </div>
-    </>
+    <div className="flex flex-col gap-6 h-auto min-h-full">
+      <FilteringHeader
+        keywords={keywords}
+        selected={selected}
+        setSelected={setSelected}
+      />
+      <ListView selected={selected} />
+    </div>
   );
 };
 
