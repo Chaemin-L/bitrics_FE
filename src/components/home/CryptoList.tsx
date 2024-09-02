@@ -16,6 +16,12 @@ interface CryptoListProps {
   data: CryptoData[];
 }
 
+// market을 BTCKRW 형식으로 변환하는 함수
+const transformMarketSymbol = (market: string) => {
+  const [currency, asset] = market.split("-");
+  return `${asset}${currency}`;
+};
+
 const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -80,7 +86,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
           {/* 토글된 경우에만 차트 표시 */}
           {selectedIndex === index && (
             <div className="p-2 border-b border-contrast-300 bg-purple-700 text-xs text-gray-300 h-[300px]">
-              <TradingViewWidget />
+              <TradingViewWidget symbol={transformMarketSymbol(item.market)} />
             </div>
           )}
         </div>
