@@ -10,4 +10,4 @@ const TermCard: React.FC<TermCardProps> = ({ term }) => {
   );
 };
 
-export default TermCard;
+export default TermCard; 

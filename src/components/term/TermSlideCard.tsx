@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
+import TermDescriptionModal from '@/components/term/TermDescriptionModal'
 
 interface TermSlideCard {
   term : string
@@ -11,9 +12,9 @@ interface TermSlideCardProps {
 
 const TermSlideCard: React.FC<TermSlideCardProps> = ({ terms }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
   const [selectedDescription, setSelectedDescription] = useState<string | null>(null);
+  const [shuffledTerms, setShuffledTerms] = useState<TermSlideCard[]>([]);
 
   let isDown = false;
   let startX: number;
@@ -42,32 +43,36 @@ const TermSlideCard: React.FC<TermSlideCardProps> = ({ terms }) => {
     setSelectedDescription(description);
   };
 
+  const handleCloseModal = () => {
+    setSelectedTerm(null);
+    setSelectedDescription(null);
+  }
+
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
-        setSelectedTerm(null);
-        setSelectedDescription(null);
+    const shuffleArray = (array: TermSlideCard[]) => {
+      const shuffled = [...array];
+      for(let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
+      return shuffled;
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [cardRef]);
+    setShuffledTerms(shuffleArray(terms));
+  }, [terms]);
 
   return (
     <>
       <div
         ref={scrollContainerRef}
-        className="overflow-hidden whitespace-nowrap w-full cursor-grab select-none -mx-[30px]"
+        className="overflow-hidden whitespace-nowrap cursor-grab select-none -mx-[30px]"
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeaveOrUp}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseMove={handleMouseMove}
       >
         <div className="inline-flex space-x-[10px]">
-          {terms.map((terms, index) => (
+          {shuffledTerms.map((terms, index) => (
             <div
               key={index}
               className="bg-purple-600 text-white p-10 rounded-[10px] min-w-[200px] text-center"
@@ -79,13 +84,13 @@ const TermSlideCard: React.FC<TermSlideCardProps> = ({ terms }) => {
         </div>
       </div>
 
-      {selectedTerm ? (
-        <div className='fixed inset-0 flex items-center justify-center'>
-          <div ref={cardRef} className="w-80 h-[400px] p-45 bg-purple-200 rounded-lg text-white text-center">
-            <p className='mt-[150px] ml-[20px] mr-[20px]'>{selectedDescription}</p>
-          </div>
-        </div>
-      ) : null}
+      {selectedTerm && selectedDescription && (
+        <TermDescriptionModal
+          term={selectedTerm}
+          description={selectedDescription}
+          onClose={handleCloseModal}
+        />
+      )}
     </>
   );
 };
