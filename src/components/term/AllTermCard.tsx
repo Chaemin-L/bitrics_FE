@@ -20,7 +20,7 @@ const AllTermCard: React.FC = () => {
 
   return (
     <div>
-      <div className="flex flex-wrap p-2">
+      <div className="flex flex-wrap p-2 justify-center">
         {terms.map((terms, index) => (
           <div key={index} onClick={() => handleCardClick(terms.term, terms.description)}>
             <TermCard term={terms.term} />

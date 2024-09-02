@@ -7,7 +7,7 @@ import AllTermCard from "@/components/term/AllTermCard";
 const TermPage = () => {
   return (
     <div className="scrollbar-hide">
-      <div className="mb-3">
+      <div className="mb-5">
         <h3 className="text-white text-xs font-semibold">용어카드를 눌러 뜻을 확인해보세요!
         </h3>
       </div>
