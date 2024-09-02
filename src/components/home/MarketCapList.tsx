@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import clsx from "clsx";
 interface MarketCapData {
   market: string;
   name: string;
@@ -8,7 +8,7 @@ interface MarketCapData {
 }
 
 const MarketCapList: React.FC = () => {
-  const initialData: MarketCapData[] = [
+  const [data, setData] = useState<MarketCapData[]>([
     { market: "BTC", name: "비트코인", marketCap: 1564, tradingVolume: 41.6 },
     { market: "ETH", name: "이더리움", marketCap: 456, tradingVolume: 18.2 },
     { market: "XRP", name: "리플", marketCap: 105, tradingVolume: 22.8 },
@@ -24,15 +24,16 @@ const MarketCapList: React.FC = () => {
     { market: "DOT", name: "폴카닷", marketCap: 50, tradingVolume: 2.9 },
     { market: "LINK", name: "체인링크", marketCap: 40, tradingVolume: 1.8 },
     { market: "DOGE", name: "도지코인", marketCap: 35, tradingVolume: 4.3 },
-  ];
-
-  const [sortedData, setSortedData] = useState<MarketCapData[]>([
-    ...initialData,
   ]);
 
+  const [sortKey, setSortKey] = useState<"marketCap" | "tradingVolume">(
+    "marketCap"
+  );
+
   const handleSort = (key: "marketCap" | "tradingVolume") => {
-    const sorted = [...sortedData].sort((a, b) => b[key] - a[key]);
-    setSortedData(sorted);
+    setSortKey(key);
+    const sortedData = [...data].sort((a, b) => b[key] - a[key]);
+    setData(sortedData);
   };
 
   return (
@@ -41,19 +42,25 @@ const MarketCapList: React.FC = () => {
         <div className="w-1/6 text-center">순위</div>
         <div className="w-2/6 text-left">이름</div>
         <div
-          className="w-1/6 text-right cursor-pointer"
+          className={clsx(
+            `w-1/6 text-right cursor-pointer`,
+            sortKey === "marketCap" ? "font-bold" : "text-contrast-200"
+          )}
           onClick={() => handleSort("marketCap")}
         >
           시가총액
         </div>
         <div
-          className="w-1/6 text-right cursor-pointer"
+          className={clsx(
+            `w-1/6 text-right cursor-pointer`,
+            sortKey === "tradingVolume" ? "font-bold" : "text-contrast-200"
+          )}
           onClick={() => handleSort("tradingVolume")}
         >
           거래대금
         </div>
       </div>
-      {sortedData.map((item, index) => (
+      {data.map((item, index) => (
         <div
           key={index}
           className="flex justify-between p-2 border-b border-contrast-300 text-xs"
