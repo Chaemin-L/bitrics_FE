@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 interface MarketCapData {
   market: string;
@@ -30,10 +30,13 @@ const MarketCapList: React.FC = () => {
     "marketCap"
   );
 
+  useEffect(() => {
+    const sortedData = [...data].sort((a, b) => b[sortKey] - a[sortKey]);
+    setData(sortedData);
+  }, [sortKey]);
+
   const handleSort = (key: "marketCap" | "tradingVolume") => {
     setSortKey(key);
-    const sortedData = [...data].sort((a, b) => b[key] - a[key]);
-    setData(sortedData);
   };
 
   return (
