@@ -19,7 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "craco.config.js"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "craco.config.js", "src/pages/term/data.js"],
   "extends": "./tsconfig.paths.json",
   "exclude": ["node_modules", "**/node_modules/*"]
 }

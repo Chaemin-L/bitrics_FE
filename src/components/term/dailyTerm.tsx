@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { terms } from '@/pages/term/data.js';
+import { terms } from '@/pages/term/data';
 
 const DailyTerm : React.FC = () => {
   const [currentTerm, setCurrentTerm] = useState(0);
