@@ -65,7 +65,7 @@ const TermSlideCard: React.FC<TermSlideCardProps> = ({ terms }) => {
     <>
       <div
         ref={scrollContainerRef}
-        className="overflow-hidden whitespace-nowrap cursor-grab select-none -mx-[30px]"
+        className="overflow-x-auto scrollbar-hide whitespace-nowrap cursor-grab select-none -mx-[30px]"
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeaveOrUp}
         onMouseUp={handleMouseLeaveOrUp}
