@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import clsx from "clsx";
+import TradingViewWidget from "./TradingViewWidget";
 interface ChartButton {
   label: string;
   value: string;
   change: string;
   isPositive: boolean;
+  symbol: string;
 }
 interface ScrollChartButtonProps {
   buttons: ChartButton[];
@@ -80,8 +82,8 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
           </div>
         </div>
         {selectedButtonIndex !== null && (
-          <div className="bg-contrast-200 p-4 mt-4 w-full">
-            <p>차트 나타나는 곳</p>
+          <div className="mt-4 w-full h-[300px]">
+            <TradingViewWidget symbol={buttons[selectedButtonIndex].symbol} />
           </div>
         )}
       </div>

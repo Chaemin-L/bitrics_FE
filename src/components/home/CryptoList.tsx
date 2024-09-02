@@ -85,7 +85,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
           </div>
           {/* 토글된 경우에만 차트 표시 */}
           {selectedIndex === index && (
-            <div className="p-2 border-b border-contrast-300 bg-purple-700 text-xs text-gray-300 h-[300px]">
+            <div className="p-2 border-b border-purple-100 bg-purple-700 text-xs text-gray-300 h-[300px]">
               <TradingViewWidget symbol={transformMarketSymbol(item.market)} />
             </div>
           )}

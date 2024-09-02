@@ -12,27 +12,43 @@ const HomePage = () => {
       value: "+1.35%",
       change: "해외보다 비싸요",
       isPositive: true,
+      symbol: "100*USDKRW/USDKRW*(BTCKRW/(BTCUSDT*USDKRW)-1)",
     },
     {
       label: "BTC 점유율",
       value: "56.40%",
       change: "+0.12%",
       isPositive: true,
+      symbol: "BTC.D",
     },
     {
       label: "환율(USD/KRW)",
       value: "1,344.73",
       change: "-0.12%",
       isPositive: false,
+      symbol: "USDKRW",
     },
     {
       label: "BTC/USD",
       value: "60,411.00",
       change: "+2.14%",
       isPositive: true,
+      symbol: "BTCUSD",
     },
-    { label: "BTC 롱", value: "66.80%", change: "", isPositive: true },
-    { label: "BTC 숏", value: "33.20%", change: "", isPositive: true },
+    {
+      label: "BTC 롱",
+      value: "66.80%",
+      change: "",
+      isPositive: true,
+      symbol: "BTCUSDLONGS",
+    },
+    {
+      label: "BTC 숏",
+      value: "33.20%",
+      change: "",
+      isPositive: true,
+      symbol: "BTCUSDSHORTS",
+    },
   ];
 
   const [selectedFilter, setSelectedFilter] = useState("KRW");
