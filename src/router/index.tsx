@@ -3,16 +3,42 @@ import GlobalLayout from "@/layouts/global";
 import HomePage from "@/pages/home";
 import NewsPage from "@/pages/news";
 
-export const ROUTES: RouteObject[] = [
+type CustomRouteObject = {
+  label?: string;
+  show?: boolean; // show in nav
+} & RouteObject;
+
+export const ROUTES: CustomRouteObject[] = [
   {
     path: "/",
     element: <HomePage />,
+    label: "홈",
+    show: true,
   },
   {
     path: "/news",
     element: <NewsPage />,
+    label: "뉴스",
+    show: true,
   },
-  // TODO: 이와 같은 형태로 path와 페이지 컴포넌트들을 연결
+  {
+    path: "/terms",
+    element: <NewsPage />,
+    label: "용어",
+    show: true,
+  },
+
+  {
+    path: "/asset",
+    element: <NewsPage />,
+    label: "자산",
+    show: true,
+  },
+  {
+    path: "/map",
+    element: <NewsPage />,
+    show: false,
+  },
 ];
 
 const router = createBrowserRouter([

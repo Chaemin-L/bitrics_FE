@@ -15,9 +15,9 @@ const FilteringHeader = (props: Props) => {
         <div
           key={keyword.key}
           className={clsx(
-            `rounded-[20px] w-fit  px-4 py-2 shadow-sm  text-sm cursor-pointer  font-bold   `,
+            `rounded-[20px] w-fit  px-4 py-2 shadow-sm  text-sm cursor-pointer  font-bold  transition-colors `,
             keyword.key === selected
-              ? "from-purple-400 via-[#421074] to-[#360D5F] bg-gradient-to-b text-white"
+              ? "bg-purple-300 text-white"
               : "text-contrast-300 bg-purple-500"
           )}
           onClick={() => setSelected(keyword.key)}
