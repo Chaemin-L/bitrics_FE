@@ -6,9 +6,10 @@ interface TradingViewWidgetProps {
 
 function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
   const isCreated = useRef<boolean>(false);
-  const container = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!container || !container.current) return;
     const containerElement = container.current;
 
     // containerElement가 null이 아닐 때만 작업 수행
@@ -39,11 +40,7 @@ function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
   }, [symbol]);
 
   return (
-    <div
-      className="tradingview-widget-container h-[300px]"
-      // @ts-ignore
-      ref={container}
-    >
+    <div className="tradingview-widget-container h-[300px]" ref={container}>
       <div className="tradingview-widget-container__widget"></div>
     </div>
   );

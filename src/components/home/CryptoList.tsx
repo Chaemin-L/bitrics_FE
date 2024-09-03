@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import TradingViewWidget from "./TradingViewWidget";
 
 interface CryptoData {
-  name: string;
   market: string;
+  name: string;
   currentPrice: string;
   kpPercent: number;
   kpPrice: string;
