@@ -1,11 +1,29 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import ScrollChartButton from "@/components/home/ScrollChartButton";
 import TabMenu from "@/components/home/TabMenu";
 import FilteringHeader from "@/components/news/FilteringHeader";
 import CryptoList from "@/components/home/CryptoList";
 import MarketCapList from "@/components/home/MarketCapList";
 import DataLoader from "@/components/home/DataLoader";
-import Loading from "@/components/common/Loading";
+
+// 한국식 숫자 포맷
+export const formatKoreanNumber = (num: number): string => {
+  if (num === 0) return "0";
+
+  const units = ["조", "억"];
+  const values = [1_000_000_000_000, 1_000_000_00];
+
+  let result = "";
+  for (let i = 0; i < units.length; i++) {
+    const unitValue = values[i];
+    if (num >= unitValue) {
+      const quotient = Math.floor(num / unitValue);
+      result += quotient.toLocaleString() + units[i] + " ";
+      num %= unitValue;
+    }
+  }
+  return result || "0";
+};
 
 const keywords = [
   { key: "KRW", label: "KRW" },
@@ -13,16 +31,14 @@ const keywords = [
   { key: "USDT", label: "USDT" },
 ];
 
-const HomePage = () => {
-  const [selectedFilter, setSelectedFilter] = useState<string>("KRW");
+type Keyword = (typeof keywords)[number]["key"];
+
+const HomePage: React.FC = () => {
+  const [selectedFilter, setSelectedFilter] = useState<Keyword>("KRW");
 
   return (
     <DataLoader>
       {({ exchangeRate, upbitData, coinpaprikaData }) => {
-        if (!exchangeRate || !upbitData || !coinpaprikaData) {
-          return <Loading />;
-        }
-
         // BTC 김치프리미엄 관련 설정
         const btcKimchPremium = exchangeRate.btcKrwKimchiPremium;
         const btcKimchChange =
@@ -33,48 +49,56 @@ const HomePage = () => {
         const isMarketCapPositive = exchangeRate.marketCapChange24h > 0;
         const isVolumePositive = exchangeRate.volume24hChange24h > 0;
 
+        // 포맷 적용
+        const marketCapFormatted = formatKoreanNumber(
+          exchangeRate.marketCapUsd
+        );
+        const volumeFormatted = formatKoreanNumber(exchangeRate.volume24hUsd);
+
         return (
           <div>
             <ScrollChartButton
               buttons={[
                 {
                   label: "BTC 점유율",
-                  value: exchangeRate.btcDominance,
+                  value: `${exchangeRate.btcDominance}%`,
                   change: "", // Unused
                   isPositive: true, // Unused
                   symbol: "BTC.D",
                 },
                 {
                   label: "BTC/USD",
-                  value: exchangeRate.btcUsd,
+                  value: exchangeRate.btcUsd.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  }),
                   change: "", // Unused
                   isPositive: true, // Unused
                   symbol: "BTCUSD",
                 },
                 {
                   label: "BTC 김치프리미엄",
-                  value: `${btcKimchPremium}%`,
+                  value: `${btcKimchPremium.toFixed(2)}%`,
                   change: btcKimchChange,
                   isPositive: isBtcKimchPositive,
                   symbol: "100*USDKRW/USDKRW*(BTCKRW/(BTCUSDT*USDKRW)-1)",
                 },
                 {
                   label: "환율(USD/KRW)",
-                  value: exchangeRate.usdToKrw,
+                  value: exchangeRate.usdToKrw.toLocaleString(),
                   change: "", // Unused
                   isPositive: false, // Unused
                   symbol: "USDKRW",
                 },
                 {
                   label: "시가총액",
-                  value: exchangeRate.marketCapUsd,
+                  value: marketCapFormatted,
                   change: `${exchangeRate.marketCapChange24h}%`,
                   isPositive: isMarketCapPositive,
                   symbol: "",
                 },
                 {
-                  label: "거래량",
-                  value: exchangeRate.volume24hUsd,
+                  label: "거래량(24시간)",
+                  value: volumeFormatted,
                   change: `${exchangeRate.volume24hChange24h}%`,
                   isPositive: isVolumePositive,
                   symbol: "",
@@ -91,9 +115,7 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
-                  <CryptoList
-                    data={upbitData[selectedFilter as keyof typeof upbitData]}
-                  />
+                  <CryptoList data={upbitData[selectedFilter]} />
                 </div>
               </div>
               <div className="bg-purple-600 text-white mt-4 -mx-[30px]">

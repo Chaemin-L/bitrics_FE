@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
+import { formatKoreanNumber } from "@/pages/home";
 interface MarketCapData {
   rank: number;
   name: string;
@@ -29,9 +30,9 @@ const MarketCapList: React.FC<MarketCapListProps> = ({ data }) => {
 
   return (
     <div>
-      <div className="flex justify-between p-2 border-b border-purple-100 text-sm text-bold">
+      <div className="flex justify-between p-2 pr-2 border-b border-purple-100 text-sm text-bold">
         <div className="w-1/6 text-center">순위</div>
-        <div className="w-2/6 text-left">이름</div>
+        <div className="w-3/6 text-left">이름</div>
         <div
           className={clsx(
             `w-1/6 text-right cursor-pointer`,
@@ -57,18 +58,16 @@ const MarketCapList: React.FC<MarketCapListProps> = ({ data }) => {
           className="flex justify-between p-2 border-b border-purple-100 text-xs"
         >
           <div className="w-1/6 text-center">{index + 1}</div>
-          <div className="w-2/6 text-left">
+          <div className="w-3/6 text-left">
             <div>
               {item.name}({item.symbol})
             </div>
           </div>
           <div className="w-1/6 text-right">
-            {item.marketCap.toLocaleString(undefined, {
-              maximumFractionDigits: 1,
-            })}
+            {formatKoreanNumber(item.marketCap)}
           </div>
           <div className="w-1/6 text-right">
-            {item.volume24h.toLocaleString()}
+            {formatKoreanNumber(item.volume24h)}
           </div>
         </div>
       ))}

@@ -69,7 +69,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
                 )}
                 onClick={() => handleButtonClick(index)}
               >
-                <div className="text-sm font-medium">{button.label}</div>
+                <div className="text-sm font-normal">{button.label}</div>
                 <div className="text-lg font-bold">{button.value}</div>
                 <div
                   className={clsx(
