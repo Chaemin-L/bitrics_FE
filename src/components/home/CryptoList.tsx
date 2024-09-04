@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TradingViewWidget from "./TradingViewWidget";
 import { formatKoreanNumber } from "@/pages/home";
 import clsx from "clsx";
@@ -30,6 +30,12 @@ const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const itemsToShow = showAll ? data : data.slice(0, 10); // 처음 10개만 보여주고 showAll이 true일 때 전체 데이터 보여주기
+
+  useEffect(() => {
+    // selected(filtering header)가 변경될 때 selectedIndex(row)와 showAll을 초기화
+    setSelectedIndex(null);
+    setShowAll(false);
+  }, [selected]);
 
   const handleRowClick = (index: number) => {
     setSelectedIndex(selectedIndex === index ? null : index);
