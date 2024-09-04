@@ -14,16 +14,19 @@ interface MarkerData {
   buy_sell: boolean;
 }
 
+
 const GoogleMapWithServerData: React.FC = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const [markers, setMarkers] = useState<MarkerData[]>([]);
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
+  const apiKey =  process.env.REACT_APP_GOOGLE_MAP_API_KEY;
+
   useEffect(() => {
     const axiosMarkers = async () => {
       try {
         const response = await axiosInstance.get('http://3.34.102.121:3000/map');
-        const data = await response.data();
+        const data = await response.data;
         const correctedData: MarkerData[] = data.map((marker: MarkerData) => ({
         ...marker,
           lng: marker.lon !== undefined ? marker.lon : marker.lng
@@ -37,26 +40,31 @@ const GoogleMapWithServerData: React.FC = () => {
     };
 
     const initializeMap = async () => {
-      const loader = new Loader({
-        apiKey: 'AIzaSyBfJt4dILwxf5WqJDcERS1zyZwEQe3dhpk',
-        version: 'weekly',
-      });
+      if (apiKey) {
+        const loader = new Loader({
+          apiKey: apiKey,
+          version: 'weekly',
+        });
+      
 
       await loader.load();
       if (mapRef.current && !map) {
         const initializedMap = new google.maps.Map(mapRef.current, {
-          center: { lat: 37.5665, lng: 126.9780 }, 
-          zoom: 12,
+          center: { lat: 31.883162, lng: 127.080855 },
+          zoom: 5,
         });
         console.log('Map initialized:', initializedMap);
         setMap(initializedMap);
 
         axiosMarkers();
       }
-    };
+    } else {
+      console.error('API KEY is missing');
+    }
+  };
 
     initializeMap();
-  }, []);
+  }, [apiKey]);
 
     useEffect(() => {
       if(map && markers.length > 0) {
