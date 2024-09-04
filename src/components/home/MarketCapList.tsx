@@ -30,12 +30,12 @@ const MarketCapList: React.FC<MarketCapListProps> = ({ data }) => {
 
   return (
     <div>
-      <div className="flex justify-between p-2 pr-2 border-b border-purple-100 text-sm text-bold">
+      <div className="flex justify-between p-2 border-b border-purple-100 text-sm text-bold">
         <div className="w-1/6 text-center">순위</div>
-        <div className="w-3/6 text-left">이름</div>
+        <div className="w-2/6 text-left">이름</div>
         <div
           className={clsx(
-            `w-1/6 text-right cursor-pointer`,
+            `w-2/6 text-right cursor-pointer`,
             sortKey === "marketCap" ? "font-bold" : "text-contrast-200"
           )}
           onClick={() => handleSort("marketCap")}
@@ -44,7 +44,7 @@ const MarketCapList: React.FC<MarketCapListProps> = ({ data }) => {
         </div>
         <div
           className={clsx(
-            `w-1/6 text-right cursor-pointer`,
+            `w-2/6 pr-2 text-right cursor-pointer`,
             sortKey === "volume24h" ? "font-bold" : "text-contrast-200"
           )}
           onClick={() => handleSort("volume24h")}
@@ -58,15 +58,15 @@ const MarketCapList: React.FC<MarketCapListProps> = ({ data }) => {
           className="flex justify-between p-2 border-b border-purple-100 text-xs"
         >
           <div className="w-1/6 text-center">{index + 1}</div>
-          <div className="w-3/6 text-left">
+          <div className="w-2/6 text-left">
             <div>
               {item.name}({item.symbol})
             </div>
           </div>
-          <div className="w-1/6 text-right">
+          <div className="w-2/6 text-right">
             {formatKoreanNumber(item.marketCap)}
           </div>
-          <div className="w-1/6 text-right">
+          <div className="w-2/6 pr-2 text-right">
             {formatKoreanNumber(item.volume24h)}
           </div>
         </div>

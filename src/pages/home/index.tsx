@@ -31,10 +31,8 @@ const keywords = [
   { key: "USDT", label: "USDT" },
 ];
 
-type Keyword = (typeof keywords)[number]["key"];
-
 const HomePage: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState<Keyword>("KRW");
+  const [selectedFilter, setSelectedFilter] = useState("KRW");
 
   return (
     <DataLoader>
