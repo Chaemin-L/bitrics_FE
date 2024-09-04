@@ -4,6 +4,7 @@ import HomePage from "@/pages/home";
 import NewsPage from "@/pages/news";
 import TermPage from "@/pages/term";
 import MapPage from "@/pages/map";
+import AssetPage from "@/pages/asset";
 
 type CustomRouteObject = {
   label?: string;
@@ -32,7 +33,7 @@ export const ROUTES: CustomRouteObject[] = [
 
   {
     path: "/asset",
-    element: <NewsPage />,
+    element: <AssetPage />,
     label: "자산",
     show: true,
   },

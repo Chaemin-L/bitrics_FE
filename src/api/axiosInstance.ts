@@ -8,6 +8,7 @@ import axios, {
 
 const axiosInstance: Axios = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
+  withCredentials: true,
 });
 
 const isDev = process.env.NODE_ENV === "development";
