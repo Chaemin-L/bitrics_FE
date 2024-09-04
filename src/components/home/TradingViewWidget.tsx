@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 interface TradingViewWidgetProps {
-  symbol: string;
+  symbol: string | null;
 }
 
 function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
