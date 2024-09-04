@@ -9,6 +9,7 @@ export interface INews {
   media: string;
   createdAt: string;
   href: string;
+  thumbnail: string | null;
 }
 
 const NewsPage = () => {
