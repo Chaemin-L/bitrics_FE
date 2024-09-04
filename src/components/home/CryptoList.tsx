@@ -16,7 +16,7 @@ interface CryptoData {
 }
 
 interface CryptoListProps {
-  selected: string;
+  selected: { key: string; label: string };
   data: CryptoData[];
 }
 
@@ -53,7 +53,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
         <div
           className={clsx(
             "w-1/6 text-right ",
-            selected === "KRW" ? "block" : "hidden"
+            selected.key === "KRW" ? "block" : "hidden"
           )}
         >
           김프
@@ -77,7 +77,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
                 {item.tradePrice.toLocaleString()}
               </div>
               {/* 김프 정보 (퍼센트 + 금액) */}
-              {selected === "KRW" && (
+              {selected.key === "KRW" && (
                 <div className="w-1/6 text-right text-contrast-200">
                   {item.kimchiPremium && (
                     <div>
