@@ -28,9 +28,15 @@ const transformMarketSymbol = (market: string) => {
 
 const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const itemsToShow = showAll ? data : data.slice(0, 10); // 처음 10개만 보여주고 showAll이 true일 때 전체 데이터 보여주기
 
   const handleRowClick = (index: number) => {
     setSelectedIndex(selectedIndex === index ? null : index);
+  };
+
+  const handleShowAll = () => {
+    setShowAll(true); // 버튼 클릭 시 전체 데이터 보여주기
   };
 
   return (
@@ -49,7 +55,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
         <div className="w-1/6 text-right">전일대비</div>
         <div className="w-1/6 text-right">거래대금</div>
       </div>
-      {data.map((item, index) => {
+      {itemsToShow.map((item, index) => {
         console.log(item);
         return (
           <div key={index}>
@@ -124,6 +130,20 @@ const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
           </div>
         );
       })}
+      {!showAll && data.length > 10 && (
+        <div className="flex justify-center p-4">
+          <button onClick={handleShowAll} className="text-xs">
+            ↓ 모두 보기
+          </button>
+        </div>
+      )}
+      {showAll && (
+        <div className="flex justify-center p-4">
+          <button onClick={() => setShowAll(false)} className="text-xs">
+            ↑ 접기
+          </button>
+        </div>
+      )}
     </div>
   );
 };
