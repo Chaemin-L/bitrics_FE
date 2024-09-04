@@ -32,7 +32,6 @@ function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
         support_host: "https://www.tradingview.com",
       });
       container.current?.appendChild(script);
-      console.log(script);
       isCreated.current = true;
     }
   }, []);

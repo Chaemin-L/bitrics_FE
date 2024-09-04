@@ -5,6 +5,7 @@ import FilteringHeader from "@/components/news/FilteringHeader";
 import CryptoList from "@/components/home/CryptoList";
 import MarketCapList from "@/components/home/MarketCapList";
 import DataLoader from "@/components/home/DataLoader";
+import Heatmap from "@/components/home/Heatmap";
 
 // 한국식 숫자 포맷
 export const formatKoreanNumber = (num: number): string => {
@@ -103,7 +104,7 @@ const HomePage: React.FC = () => {
                 },
               ]}
             />
-            <TabMenu tabs={["김프", "시가총액", "관심"]}>
+            <TabMenu tabs={["김프", "시가총액", "히트맵"]}>
               <div>
                 <div className="mt-4">
                   <FilteringHeader
@@ -122,7 +123,11 @@ const HomePage: React.FC = () => {
               <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
                 <MarketCapList data={coinpaprikaData} />
               </div>
-              <div>관심 탭</div>
+              <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+                <div className="h-[450px] w-full">
+                  <Heatmap />
+                </div>
+              </div>
             </TabMenu>
           </div>
         );
