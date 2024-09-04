@@ -20,43 +20,33 @@ const GoogleMap: React.FC = () => {
 
         const atms = [
           {
-            label: 'A',
-            city: '명동',
+            city: 'Korea',
+            name: '명동',
             location:'대한민국 서울특별시 중구 명동 2길 34', 
             lat: 37.5617176,
             lng: 126.9827139,
             buy_sell: true
           },
           {
-            label: 'B',
-            city: 'Tokyo',
+            city: 'Japan',
+            name: 'Tokyo',
             location:'Akihabara Southern Bldg. 5F Iwamotocho, Chiyoda Ku Tokyo To, 101-0032 Japan',
             lat: 35.6951274,
             lng: 139.7752858,
             buy_sell: true
           },
-          {
-            label: 'C',
-            city: '남산',
-            location:'대한민국 서울특별시 중구 명동 2길 34',
-            lat: 37.5515,
-            lng: 126.988,
-            buy_sell: true
-          },
         ];
 
-        atms.forEach(({ label, city, lat, lng, location }) => {
+        atms.forEach(({ city, lat, lng, location }) => {
           const marker = new google.maps.Marker({
             position: { lat, lng },
-            label,
             map,
           });
           
           const infoWindowContent = `
             <div class="${classNames(
-              'p-2', // 패딩 조정
+              'p-2',
               'bg-white',
-              
             )}">
               <h1 class="${classNames(
                 'text-sm',
