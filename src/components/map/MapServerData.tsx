@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import classNames from 'classnames';
+import axiosInstance from '@/api/axiosInstance';
 
 interface MarkerData {
   lon: undefined;
@@ -19,19 +20,19 @@ const GoogleMapWithServerData: React.FC = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
   useEffect(() => {
-    const fetchMarkers = async () => {
+    const axiosMarkers = async () => {
       try {
-        const response = await fetch('http://3.34.102.121:3000/map');
-        const data = await response.json();
+        const response = await axiosInstance.get('http://3.34.102.121:3000/map');
+        const data = await response.data();
         const correctedData: MarkerData[] = data.map((marker: MarkerData) => ({
         ...marker,
           lng: marker.lon !== undefined ? marker.lon : marker.lng
         }));
 
-        console.log('Fetched markers:', correctedData);
+        console.log('axios markers:', correctedData);
         setMarkers(correctedData);
       } catch (error) {
-        console.error('Error fetching marker data:', error);
+        console.error('Error axios marker data:', error);
       }
     };
 
@@ -50,7 +51,7 @@ const GoogleMapWithServerData: React.FC = () => {
         console.log('Map initialized:', initializedMap);
         setMap(initializedMap);
 
-        fetchMarkers();
+        axiosMarkers();
       }
     };
 
