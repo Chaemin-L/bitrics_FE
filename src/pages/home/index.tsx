@@ -1,143 +1,138 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import ScrollChartButton from "@/components/home/ScrollChartButton";
 import TabMenu from "@/components/home/TabMenu";
 import FilteringHeader from "@/components/news/FilteringHeader";
 import CryptoList from "@/components/home/CryptoList";
 import MarketCapList from "@/components/home/MarketCapList";
+import DataLoader from "@/components/home/DataLoader";
+import Heatmap from "@/components/home/Heatmap";
 
-const HomePage = () => {
-  const buttons = [
-    {
-      label: "BTC 김치프리미엄",
-      value: "+1.35%",
-      change: "해외보다 비싸요",
-      isPositive: true,
-      symbol: "100*USDKRW/USDKRW*(BTCKRW/(BTCUSDT*USDKRW)-1)",
-    },
-    {
-      label: "BTC 점유율",
-      value: "56.40%",
-      change: "+0.12%",
-      isPositive: true,
-      symbol: "BTC.D",
-    },
-    {
-      label: "환율(USD/KRW)",
-      value: "1,344.73",
-      change: "-0.12%",
-      isPositive: false,
-      symbol: "USDKRW",
-    },
-    {
-      label: "BTC/USD",
-      value: "60,411.00",
-      change: "+2.14%",
-      isPositive: true,
-      symbol: "BTCUSD",
-    },
-    {
-      label: "BTC 롱",
-      value: "66.80%",
-      change: "",
-      isPositive: true,
-      symbol: "BTCUSDLONGS",
-    },
-    {
-      label: "BTC 숏",
-      value: "33.20%",
-      change: "",
-      isPositive: true,
-      symbol: "BTCUSDSHORTS",
-    },
-  ];
+// 한국식 숫자 포맷
+export const formatKoreanNumber = (num: number): string => {
+  if (num === 0) return "0";
 
+  const units = ["조", "억"];
+  const values = [1_000_000_000_000, 1_000_000_00];
+
+  let result = "";
+  for (let i = 0; i < units.length; i++) {
+    const unitValue = values[i];
+    if (num >= unitValue) {
+      const quotient = Math.floor(num / unitValue);
+      result += quotient.toLocaleString() + units[i] + " ";
+      num %= unitValue;
+    }
+  }
+  return result || "0";
+};
+
+const keywords = [
+  { key: "KRW", label: "KRW" },
+  { key: "BTC", label: "BTC" },
+  { key: "USDT", label: "USDT" },
+];
+
+const HomePage: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState("KRW");
-  const keywords = [
-    { key: "KRW", label: "KRW" },
-    { key: "BTC", label: "BTC" },
-    { key: "USDT", label: "USDT" },
-  ];
-
-  const data = [
-    {
-      market: "KRW-BTC",
-      koreanName: "비트코인",
-      englishName: "bitcoin",
-      tradePrice: "229,526백만",
-      kimchiPremium: 1.8,
-      change: "",
-      changePrice: "45,000",
-      changeRate: 0.48,
-      accTradePrice24h: "80,9555,000",
-    },
-    {
-      market: "KRW-ETH",
-      koreanName: "이더리움",
-      englishName: "etherium",
-      tradePrice: "18,526백만",
-      kimchiPremium: -2.3,
-      change: "",
-      changePrice: "-45,000",
-      changeRate: -0.6,
-      accTradePrice24h: "50,9555,000",
-    },
-    {
-      market: "KRW-XRP",
-      koreanName: "리플",
-      englishName: "ripple",
-      tradePrice: "526만",
-      kimchiPremium: 3.2,
-      change: "",
-      changePrice: "45,000",
-      changeRate: 1.25,
-      accTradePrice24h: "10,9555,000",
-    },
-    {
-      market: "KRW-NEO",
-      koreanName: "네오",
-      englishName: "neo",
-      tradePrice: "26백만",
-      kimchiPremium: 0.8,
-      change: "",
-      changePrice: "-45,000",
-      changeRate: -0.2,
-      accTradePrice24h: "30,9555,000",
-    },
-    {
-      market: "KRW-MTL",
-      koreanName: "메탈",
-      englishName: "metal",
-      tradePrice: "1,526만",
-      kimchiPremium: -1.5,
-      change: "",
-      changePrice: "45,000",
-      changeRate: 0.1,
-      accTradePrice24h: "40,9555,000",
-    },
-  ];
 
   return (
-    <div>
-      <ScrollChartButton buttons={buttons} />
-      <TabMenu tabs={["김프", "시가총액", "관심"]}>
-        <div>
-          <div className="mt-4">
-            <FilteringHeader
-              keywords={keywords}
-              selected={selectedFilter}
-              setSelected={setSelectedFilter}
+    <DataLoader>
+      {({ exchangeRate, upbitData, coinpaprikaData }) => {
+        // BTC 김치프리미엄 관련 설정
+        const btcKimchPremium = exchangeRate.btcKrwKimchiPremium;
+        const btcKimchChange =
+          btcKimchPremium > 0 ? "해외보다 비싸요" : "해외보다 싸요";
+        const isBtcKimchPositive = btcKimchPremium > 0;
+
+        // 시가총액 및 거래량 관련 설정
+        const isMarketCapPositive = exchangeRate.marketCapChange24h > 0;
+        const isVolumePositive = exchangeRate.volume24hChange24h > 0;
+
+        // 포맷 적용
+        const marketCapFormatted = formatKoreanNumber(
+          exchangeRate.marketCapUsd
+        );
+        const volumeFormatted = formatKoreanNumber(exchangeRate.volume24hUsd);
+
+        return (
+          <div>
+            <ScrollChartButton
+              buttons={[
+                {
+                  label: "BTC 점유율",
+                  value: `${exchangeRate.btcDominance}%`,
+                  change: "", // Unused
+                  isPositive: true, // Unused
+                  symbol: "BTC.D",
+                },
+                {
+                  label: "BTC/USD",
+                  value: exchangeRate.btcUsd.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  }),
+                  change: "", // Unused
+                  isPositive: true, // Unused
+                  symbol: "BTCUSD",
+                },
+                {
+                  label: "BTC 김치프리미엄",
+                  value: `${btcKimchPremium.toFixed(2)}%`,
+                  change: btcKimchChange,
+                  isPositive: isBtcKimchPositive,
+                  symbol: "100*USDKRW/USDKRW*(BTCKRW/(BTCUSDT*USDKRW)-1)",
+                },
+                {
+                  label: "환율(USD/KRW)",
+                  value: exchangeRate.usdToKrw.toLocaleString(),
+                  change: "", // Unused
+                  isPositive: false, // Unused
+                  symbol: "USDKRW",
+                },
+                {
+                  label: "시가총액",
+                  value: marketCapFormatted,
+                  change: `${exchangeRate.marketCapChange24h}%`,
+                  isPositive: isMarketCapPositive,
+                  symbol: "",
+                },
+                {
+                  label: "거래량(24시간)",
+                  value: volumeFormatted,
+                  change: `${exchangeRate.volume24hChange24h}%`,
+                  isPositive: isVolumePositive,
+                  symbol: "",
+                },
+              ]}
             />
+            <TabMenu tabs={["김프", "시가총액", "히트맵"]}>
+              <div>
+                <div className="mt-4">
+                  <FilteringHeader
+                    keywords={keywords}
+                    selected={selectedFilter}
+                    setSelected={setSelectedFilter}
+                  />
+                </div>
+                <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+                  <CryptoList
+                    data={upbitData[selectedFilter]}
+                    selected={selectedFilter}
+                  />
+                </div>
+              </div>
+              <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+                <MarketCapList data={coinpaprikaData} />
+              </div>
+              <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+                <div className="h-[450px] w-full">
+                  <Heatmap />
+                </div>
+              </div>
+            </TabMenu>
           </div>
-          <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
-            <CryptoList data={data} />
-          </div>
-        </div>
-        <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
-          <MarketCapList />
-        </div>
-        <div>관심 탭</div>
-      </TabMenu>
-    </div>
+        );
+      }}
+    </DataLoader>
   );
 };
 
