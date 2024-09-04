@@ -45,7 +45,7 @@ const ListItem = (props: INews) => {
         <span>{media}</span>
         <span>{createdAt}</span>
       </div>
-      <div className="flex flex-col gap-2 group-hover:underline">
+      <div className="flex flex-col gap-2 group-hover:underline group-hover:underline-offset-2">
         <h2 className="text-sm line-clamp-1">{title}</h2>
         <p className="text-xs line-clamp-2 font-normal">{content}</p>
       </div>
