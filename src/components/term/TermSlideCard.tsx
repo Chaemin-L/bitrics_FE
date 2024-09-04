@@ -72,7 +72,7 @@ const TermSlideCard: React.FC<TermSlideCardProps> = ({ terms }) => {
         onMouseMove={handleMouseMove}
       >
         <div className="inline-flex space-x-[10px]">
-          {shuffledTerms.map((terms, index) => (
+          {shuffledTerms.slice(0, 5).map((terms, index) => (
             <div
               key={index}
               className="bg-purple-600 text-white p-10 rounded-[10px] min-w-[200px] text-center"
