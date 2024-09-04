@@ -17,49 +17,22 @@ export const getNews = async (keyword) => {
   const html = await getHTML(keyword);
   const $ = load(html);
 
-  const newsHref = $(".article .txt_wrap a")
-    .map(function () {
-      return $(this).has("em.tit").prop("href");
-    })
-    .toArray();
-
-  const newsTitle = $(".article .txt_wrap .tit")
-    .contents()
-    .map(function () {
-      return $(this).text();
-    })
-    .toArray();
-
-  const newsContent = $(".article .txt_wrap p.txt")
-    .map(function () {
-      return $(this).text();
-    })
-    .toArray();
-
-  const newsMedia = $(".article .txt_wrap p.info")
-    .children("span")
-    .not(".date_time")
-    .map(function () {
-      return $(this).first().text();
-    })
-    .toArray();
-
-  const newsCreatedAt = $(".article .txt_wrap p.info")
-    .children("span.date_time")
-    .map(function () {
-      return $(this).text();
-    })
-    .toArray();
-
-  const news = [];
-  for (let i = 0; i < newsTitle.length; i++) {
-    news.push({
-      title: newsTitle[i],
-      content: newsContent[i],
-      media: newsMedia[i],
-      createdAt: newsCreatedAt[i],
-      href: newsHref[i],
-    });
+  try {
+    const newsList = $(".article .txt_wrap")
+      .map(function (i, el) {
+        const title = $(el)._findBySelector("a > em.tit").text();
+        const content = $(el)._findBySelector("a > p.txt").text();
+        const href = $(el)._findBySelector("a").attr("href");
+        const media = $(el)._findBySelector("p.info span:first").text();
+        const createdAt = $(el)._findBySelector("p.info span:last").text();
+        let thumbnail = $(el)._findBySelector(".thumbnail img").attr("src");
+        thumbnail = thumbnail.startsWith("//") ? null : thumbnail;
+        return { title, content, href, media, createdAt, thumbnail };
+      })
+      .toArray();
+    return newsList;
+  } catch (e) {
+    // 검색 결과가 없을 경우
+    return [];
   }
-  return news;
 };

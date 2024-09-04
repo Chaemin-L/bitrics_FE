@@ -23,9 +23,9 @@ const NavHeader = () => {
             <path
               d="M7.66671 16L1.83337 19.3333V6L7.66671 2.66667M7.66671 16L14.3334 19.3333M7.66671 16V2.66667M14.3334 19.3333L20.1667 16V2.66667L14.3334 6M14.3334 19.3333V6M14.3334 6L7.66671 2.66667"
               stroke="white"
-              stroke-width="3.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </Link>

@@ -33,7 +33,7 @@ const keywords = [
 ];
 
 const HomePage: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState("KRW");
+  const [selectedFilter, setSelectedFilter] = useState(keywords[0]);
 
   return (
     <DataLoader>
@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
                   <CryptoList
-                    data={upbitData[selectedFilter]}
+                    data={upbitData[selectedFilter.key]}
                     selected={selectedFilter}
                   />
                 </div>

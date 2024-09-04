@@ -19,9 +19,7 @@ const DataLoader: React.FC<DataLoaderProps> = ({ children }) => {
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await axiosInstance.get(
-        "http://3.34.102.121:3000/markets"
-      );
+      const response = await axiosInstance.get("/markets");
       setData(response.data);
     };
     loadData();
