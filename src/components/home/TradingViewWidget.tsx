@@ -10,14 +10,11 @@ function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
 
   useEffect(() => {
     if (!container || !container.current) return;
-    const containerElement = container.current;
 
     // containerElement가 null이 아닐 때만 작업 수행
-    if (containerElement) {
-      if (isCreated.current) {
-        // 기존 차트가 있다면 제거
-        containerElement.innerHTML = "";
-      }
+    if (!isCreated.current) {
+      // 기존 차트가 있다면 제거
+      container.current.innerHTML = "";
 
       const script = document.createElement("script");
       script.src =
@@ -26,7 +23,7 @@ function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
       script.async = true;
       script.innerHTML = JSON.stringify({
         autosize: true,
-        symbol: symbol,
+        symbol,
         interval: "D",
         timezone: "Asia/Seoul",
         theme: "dark",
@@ -35,13 +32,14 @@ function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
         support_host: "https://www.tradingview.com",
       });
       container.current?.appendChild(script);
+      console.log(script);
       isCreated.current = true;
     }
-  }, [symbol]);
+  }, []);
 
   return (
     <div className="tradingview-widget-container h-[300px]" ref={container}>
-      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-container__widget" />
     </div>
   );
 }
