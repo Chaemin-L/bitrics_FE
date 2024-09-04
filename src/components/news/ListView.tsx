@@ -23,7 +23,7 @@ const ListView = (props: IListView) => {
   }, [selected]);
 
   return (
-    <div className="bg-purple-600 rounded-[10px] p-5 divide-y divide-purple-100 w-full min-h-screen">
+    <div className="bg-purple-600 rounded-[10px] p-5 divide-y divide-purple-100 w-full min-h-screen items-center">
       {isLoading ? (
         <Loading />
       ) : (
