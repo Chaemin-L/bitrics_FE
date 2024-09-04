@@ -3,13 +3,14 @@ import TradingViewWidget from "./TradingViewWidget";
 
 interface CryptoData {
   market: string;
-  name: string;
-  currentPrice: string;
-  kpPercent: number;
-  kpPrice: string;
-  changedPercent: number;
-  changedPrice: string;
-  tradingVolume: string;
+  koreanName: string;
+  englishName: string;
+  tradePrice: string;
+  kimchiPremium: number;
+  change: string;
+  changePrice: string;
+  changeRate: number;
+  accTradePrice24h: string;
 }
 
 interface CryptoListProps {
@@ -45,43 +46,41 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
             onClick={() => handleRowClick(index)}
           >
             <div className="w-1/5 text-left">
-              <div>{item.name}</div>
+              <div>{item.koreanName}</div>
               <div className="text-contrast-200">{item.market}</div>
             </div>
-            <div className="w-1/5 text-right">{item.currentPrice}</div>
+            <div className="w-1/5 text-right">{item.tradePrice}</div>
             {/* 김프 정보 (퍼센트 + 금액) */}
             <div className="w-1/5 text-right text-contrast-200">
-              {item.kpPercent > 0 ? (
+              {item.kimchiPremium > 0 ? (
                 <div>
-                  <div className="text-red">+{item.kpPercent.toFixed(2)}%</div>
-                  <div>+{item.kpPrice}</div>
+                  <div className="text-red">
+                    +{item.kimchiPremium.toFixed(2)}%
+                  </div>
                 </div>
               ) : (
                 <div>
-                  <div className="text-blue">{item.kpPercent.toFixed(2)}%</div>
-                  <div>{item.kpPrice}</div>
+                  <div className="text-blue">
+                    {item.kimchiPremium.toFixed(2)}%
+                  </div>
                 </div>
               )}
             </div>
             {/* 전일대비 정보 (퍼센트 + 금액) */}
             <div className="w-1/5 text-right text-contrast-200">
-              {item.changedPercent > 0 ? (
+              {item.changeRate > 0 ? (
                 <div>
-                  <div className="text-red">
-                    +{item.changedPercent.toFixed(2)}%
-                  </div>
-                  <div>+{item.changedPrice}</div>
+                  <div className="text-red">+{item.changeRate.toFixed(2)}%</div>
+                  <div>+{item.changePrice}</div>
                 </div>
               ) : (
                 <div>
-                  <div className="text-blue">
-                    {item.changedPercent.toFixed(2)}%
-                  </div>
-                  <div>{item.changedPrice}</div>
+                  <div className="text-blue">{item.changeRate.toFixed(2)}%</div>
+                  <div>{item.changePrice}</div>
                 </div>
               )}
             </div>
-            <div className="w-1/5 text-right">{item.tradingVolume}</div>
+            <div className="w-1/5 text-right">{item.accTradePrice24h}</div>
           </div>
           {/* 토글된 경우에만 차트 표시 */}
           {selectedIndex === index && (
