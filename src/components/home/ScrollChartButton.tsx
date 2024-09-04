@@ -6,7 +6,7 @@ interface ChartButton {
   value: string;
   change: string;
   isPositive: boolean;
-  symbol: string;
+  symbol: string | null;
 }
 interface ScrollChartButtonProps {
   buttons: ChartButton[];
@@ -40,6 +40,10 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
   };
 
   const handleButtonClick = (index: number) => {
+    // 현재 선택된 버튼의 symbol이 null이거나 선택된 버튼이 아닌 경우
+    if (buttons[index].symbol === null) return; // symbol이 null인 경우 아무 동작도 하지 않음
+
+    // 버튼 클릭 시 선택된 인덱스를 업데이트
     setSelectedButtonIndex(selectedButtonIndex === index ? null : index);
   };
 
@@ -65,7 +69,7 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
                 )}
                 onClick={() => handleButtonClick(index)}
               >
-                <div className="text-sm font-medium">{button.label}</div>
+                <div className="text-sm font-normal">{button.label}</div>
                 <div className="text-lg font-bold">{button.value}</div>
                 <div
                   className={clsx(
@@ -76,13 +80,11 @@ const ScrollChartButton: React.FC<ScrollChartButtonProps> = ({ buttons }) => {
                   {button.change}
                 </div>
               </div>
-              {selectedButtonIndex === index && (
+              {selectedButtonIndex === index && button.symbol && (
                 <>
                   <div className="h-[328px] w-full left-0">
                     <div className="absolute top-[96px] mt-4 left-0 w-full h-[300px] ">
-                      <TradingViewWidget
-                        symbol={buttons[selectedButtonIndex].symbol}
-                      />
+                      <TradingViewWidget symbol={button.symbol} />
                     </div>
                   </div>
                 </>

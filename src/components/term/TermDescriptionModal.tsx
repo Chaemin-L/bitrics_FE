@@ -24,8 +24,8 @@ const TermDescriptionModal: React.FC<TermDescriptionModalProps> = ({ term, descr
 
   return (
     <div className='fixed inset-0 flex items-center justify-center'>
-      <div ref={cardRef} className="w-80 h-[400px] p-45 bg-purple-200 rounded-lg text-white text-center">
-        <h2 className="text-lg font-bold mt-[130px]">{term}</h2>
+      <div ref={cardRef} className="w-80 h-[400px] p-45 bg-purple-200 rounded-lg text-white text-center flex flex-col justify-center">
+        <h2 className="text-lg font-bold">{term}</h2>
         <p className='mt-4 ml-[20px] mr-[20px]'>{description}</p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 interface TradingViewWidgetProps {
-  symbol: string;
+  symbol: string | null;
 }
 
 function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
@@ -32,7 +32,6 @@ function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
         support_host: "https://www.tradingview.com",
       });
       container.current?.appendChild(script);
-      console.log(script);
       isCreated.current = true;
     }
   }, []);
