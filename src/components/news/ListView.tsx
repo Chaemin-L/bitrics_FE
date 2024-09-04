@@ -1,10 +1,10 @@
 import { getNews } from "@/lib/crawling";
-import { INews } from "@/pages/news";
+import { IKeyword, INews } from "@/pages/news";
 import { useCallback, useEffect, useState } from "react";
 import Loading from "../common/Loading";
 
 interface IListView {
-  selected: string;
+  selected: IKeyword;
 }
 
 const ListView = (props: IListView) => {
@@ -14,20 +14,29 @@ const ListView = (props: IListView) => {
 
   const getData = useCallback(async () => {
     setIsLoading(true);
-    await getNews(selected).then((res) => setNews(res as INews[]));
+    await getNews(selected.label).then((res) => setNews(res as INews[]));
     setIsLoading(false);
   }, [selected]);
 
   useEffect(() => {
     getData();
-  }, [selected, getData]);
+  }, [selected]);
 
   return (
     <div className="bg-purple-600 rounded-[10px] p-5 divide-y divide-purple-100 w-full min-h-screen">
       {isLoading ? (
         <Loading />
       ) : (
-        news.map((item, index) => <ListItem key={index} {...item} />)
+        <>
+          {news.length === 0 && (
+            <div className="text-white text-center">
+              해당 키워드의 기사가 존재하지 않습니다
+            </div>
+          )}
+          {news.map((item, index) => (
+            <ListItem key={index} {...item} />
+          ))}
+        </>
       )}
     </div>
   );

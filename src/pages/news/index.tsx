@@ -3,6 +3,10 @@ import ListView from "@/components/news/ListView";
 // import ListView from "@/components/news/ListView";
 import { useState } from "react";
 
+export interface IKeyword {
+  key: string;
+  label: string;
+}
 export interface INews {
   title: string;
   content: string;
@@ -12,18 +16,19 @@ export interface INews {
   thumbnail: string | null;
 }
 
+const KEYWORDS = [
+  { key: "crypto", label: "가상화폐" },
+  { key: "stock", label: "주식" },
+  { key: "economy", label: "경제" },
+];
+
 const NewsPage = () => {
-  const [selected, setSelected] = useState("crypto");
-  const keywords = [
-    { key: "crypto", label: "가상화폐" },
-    { key: "stock", label: "주식" },
-    { key: "economy", label: "경제" },
-  ];
+  const [selected, setSelected] = useState<IKeyword>(KEYWORDS[0]);
 
   return (
     <div className="flex flex-col gap-6 h-auto min-h-full">
       <FilteringHeader
-        keywords={keywords}
+        keywords={KEYWORDS}
         selected={selected}
         setSelected={setSelected}
       />

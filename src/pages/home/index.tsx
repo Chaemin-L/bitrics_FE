@@ -51,12 +51,13 @@ const HomePage = () => {
     },
   ];
 
-  const [selectedFilter, setSelectedFilter] = useState("KRW");
   const keywords = [
     { key: "KRW", label: "KRW" },
     { key: "BTC", label: "BTC" },
     { key: "USDT", label: "USDT" },
   ];
+
+  const [selectedFilter, setSelectedFilter] = useState(keywords[0]);
 
   const data = [
     {
