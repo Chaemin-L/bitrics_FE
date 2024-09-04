@@ -113,7 +113,10 @@ const HomePage: React.FC = () => {
                   />
                 </div>
                 <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
-                  <CryptoList data={upbitData[selectedFilter]} />
+                  <CryptoList
+                    data={upbitData[selectedFilter]}
+                    selected={selectedFilter}
+                  />
                 </div>
               </div>
               <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
