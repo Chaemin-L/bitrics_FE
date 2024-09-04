@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import axiosInstance from '@/api/axiosInstance';
 
 interface MarkerData {
@@ -75,11 +75,11 @@ const GoogleMapWithServerData: React.FC = () => {
             map
           });
           const infoWindowContent = `
-            <div class="${classNames(
+            <div class="${clsx(
               'p-2',
               'bg-white',
             )}">
-              <h1 class="${classNames(
+              <h1 class="${clsx(
                 'text-sm',
                 'font-semibold',
                 'text-gray-900',
