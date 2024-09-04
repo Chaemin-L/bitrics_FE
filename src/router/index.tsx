@@ -3,6 +3,7 @@ import GlobalLayout from "@/layouts/global";
 import HomePage from "@/pages/home";
 import NewsPage from "@/pages/news";
 import TermPage from "@/pages/term";
+import MapPage from "@/pages/map";
 
 type CustomRouteObject = {
   label?: string;
@@ -37,8 +38,8 @@ export const ROUTES: CustomRouteObject[] = [
   },
   {
     path: "/map",
-    element: <NewsPage />,
-    show: false,
+    element: <MapPage />,
+    show: true,
   },
 ];
 
