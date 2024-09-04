@@ -54,15 +54,11 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
             <div className="w-1/5 text-right text-contrast-200">
               {item.kimchiPremium > 0 ? (
                 <div>
-                  <div className="text-red">
-                    +{item.kimchiPremium.toFixed(2)}%
-                  </div>
+                  <div className="text-red">+{item.kimchiPremium}%</div>
                 </div>
               ) : (
                 <div>
-                  <div className="text-blue">
-                    {item.kimchiPremium.toFixed(2)}%
-                  </div>
+                  <div className="text-blue">{item.kimchiPremium}%</div>
                 </div>
               )}
             </div>
@@ -70,12 +66,12 @@ const CryptoList: React.FC<CryptoListProps> = ({ data }) => {
             <div className="w-1/5 text-right text-contrast-200">
               {item.changeRate > 0 ? (
                 <div>
-                  <div className="text-red">+{item.changeRate.toFixed(2)}%</div>
+                  <div className="text-red">+{item.changeRate}%</div>
                   <div>+{item.changePrice}</div>
                 </div>
               ) : (
                 <div>
-                  <div className="text-blue">{item.changeRate.toFixed(2)}%</div>
+                  <div className="text-blue">{item.changeRate}%</div>
                   <div>{item.changePrice}</div>
                 </div>
               )}

@@ -1,41 +1,29 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 interface MarketCapData {
-  market: string;
+  rank: number;
   name: string;
+  symbol: string;
   marketCap: number;
-  tradingVolume: number;
+  volume24h: number;
 }
 
-const MarketCapList: React.FC = () => {
-  const [data, setData] = useState<MarketCapData[]>([
-    { market: "BTC", name: "비트코인", marketCap: 1564, tradingVolume: 41.6 },
-    { market: "ETH", name: "이더리움", marketCap: 456, tradingVolume: 18.2 },
-    { market: "XRP", name: "리플", marketCap: 105, tradingVolume: 22.8 },
-    { market: "LTC", name: "라이트코인", marketCap: 65, tradingVolume: 5.1 },
-    { market: "BCH", name: "비트코인캐시", marketCap: 76, tradingVolume: 6.8 },
-    {
-      market: "BNB",
-      name: "바이낸스코인",
-      marketCap: 304,
-      tradingVolume: 12.5,
-    },
-    { market: "ADA", name: "에이다", marketCap: 85, tradingVolume: 3.2 },
-    { market: "DOT", name: "폴카닷", marketCap: 50, tradingVolume: 2.9 },
-    { market: "LINK", name: "체인링크", marketCap: 40, tradingVolume: 1.8 },
-    { market: "DOGE", name: "도지코인", marketCap: 35, tradingVolume: 4.3 },
-  ]);
+interface MarketCapListProps {
+  data: MarketCapData[];
+}
 
-  const [sortKey, setSortKey] = useState<"marketCap" | "tradingVolume">(
+const MarketCapList: React.FC<MarketCapListProps> = ({ data }) => {
+  const [sortedData, setSortedData] = useState<MarketCapData[]>(data);
+  const [sortKey, setSortKey] = useState<"marketCap" | "volume24h">(
     "marketCap"
   );
 
   useEffect(() => {
-    const sortedData = [...data].sort((a, b) => b[sortKey] - a[sortKey]);
-    setData(sortedData);
-  }, [sortKey]);
+    const sorted = [...data].sort((a, b) => b[sortKey] - a[sortKey]);
+    setSortedData(sorted);
+  }, [data, sortKey]);
 
-  const handleSort = (key: "marketCap" | "tradingVolume") => {
+  const handleSort = (key: "marketCap" | "volume24h") => {
     setSortKey(key);
   };
 
@@ -56,14 +44,14 @@ const MarketCapList: React.FC = () => {
         <div
           className={clsx(
             `w-1/6 text-right cursor-pointer`,
-            sortKey === "tradingVolume" ? "font-bold" : "text-contrast-200"
+            sortKey === "volume24h" ? "font-bold" : "text-contrast-200"
           )}
-          onClick={() => handleSort("tradingVolume")}
+          onClick={() => handleSort("volume24h")}
         >
           거래대금
         </div>
       </div>
-      {data.map((item, index) => (
+      {sortedData.map((item, index) => (
         <div
           key={index}
           className="flex justify-between p-2 border-b border-purple-100 text-xs"
@@ -71,14 +59,16 @@ const MarketCapList: React.FC = () => {
           <div className="w-1/6 text-center">{index + 1}</div>
           <div className="w-2/6 text-left">
             <div>
-              {item.market} - {item.name}
+              {item.name}({item.symbol})
             </div>
           </div>
           <div className="w-1/6 text-right">
-            {item.marketCap.toLocaleString()}조
+            {item.marketCap.toLocaleString(undefined, {
+              maximumFractionDigits: 1,
+            })}
           </div>
           <div className="w-1/6 text-right">
-            {item.tradingVolume.toLocaleString()}조
+            {item.volume24h.toLocaleString()}
           </div>
         </div>
       ))}
