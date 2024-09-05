@@ -1,7 +1,7 @@
-import { getNews } from "@/lib/crawling";
 import { IKeyword, INews } from "@/pages/news";
 import { useCallback, useEffect, useState } from "react";
 import Loading from "../common/Loading";
+import axiosInstance from "@/api/axiosInstance";
 
 interface IListView {
   selected: IKeyword;
@@ -14,7 +14,9 @@ const ListView = (props: IListView) => {
 
   const getData = useCallback(async () => {
     setIsLoading(true);
-    await getNews(selected.label).then((res) => setNews(res as INews[]));
+    await axiosInstance
+      .get(encodeURIComponent(`/news/${selected.label}`))
+      .then((res) => setNews(res.data as INews[]));
     setIsLoading(false);
   }, [selected]);
 
