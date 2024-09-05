@@ -15,7 +15,7 @@ const ListView = (props: IListView) => {
   const getData = useCallback(async () => {
     setIsLoading(true);
     await axiosInstance
-      .get(encodeURIComponent(`/news/${selected.label}`))
+      .get(encodeURIComponent(`/news?keyword=${selected.label}`))
       .then((res) => setNews(res.data as INews[]));
     setIsLoading(false);
   }, [selected]);
