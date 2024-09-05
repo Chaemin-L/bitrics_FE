@@ -11,17 +11,12 @@
   "background_color": "#2C0C54",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "icons/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "icons/logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -38,6 +33,59 @@
           "sizes": "192x192"
         }
       ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/home2.png",
+      "sizes": "724x1572",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Application"
+    },
+    {
+      "src": "screenshots/news1.png",
+      "sizes": "724x1572",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Application"
+    },
+    {
+      "src": "screenshots/map1.png",
+      "sizes": "724x1572",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Application"
+    },
+
+    {
+      "src": "screenshots/term1.png",
+      "sizes": "724x1572",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Application"
+    },
+    {
+      "src": "screenshots/wide_news1.png",
+      "sizes": "2490x1398",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Application"
+    },
+    {
+      "src": "screenshots/wide_terms1.png",
+      "sizes": "2490x1398",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Application"
+    },
+
+    {
+      "src": "screenshots/wide_map1.png",
+      "sizes": "2490x1398",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Application"
     }
   ]
 }
