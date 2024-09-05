@@ -46,7 +46,7 @@ const NewsPage = () => {
             />
           </svg>
         </a>
-        에서 최근 10개의 기사를 가져옵니다
+        에서 최근 10개의 기사를 가져와요!
       </p>
       <FilteringHeader
         keywords={KEYWORDS}

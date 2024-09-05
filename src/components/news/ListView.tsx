@@ -33,7 +33,7 @@ const ListView = (props: IListView) => {
         <>
           {news.length === 0 && (
             <div className="text-white text-center">
-              해당 키워드의 기사가 존재하지 않습니다
+              통신 중 에러가 발생했어요. 다시 시도해주세요.
             </div>
           )}
           {news.map((item, index) => (
@@ -63,7 +63,10 @@ const ListItem = (props: INews) => {
           <p className="text-xs line-clamp-2 font-normal">{content}</p>
         </div>
         {thumbnail && (
-          <img className="w-[100px]  object-cover" src={thumbnail} />
+          <img
+            className="min-w-[100px]  object-cover h-[60px]"
+            src={thumbnail}
+          />
         )}
       </div>
     </a>
