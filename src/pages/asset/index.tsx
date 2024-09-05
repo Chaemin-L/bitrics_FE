@@ -1,16 +1,14 @@
-import axiosInstance from "@/api/axiosInstance";
 import KakaoLogin from "@/assets/kakao-login.png";
+import { Link } from "react-router-dom";
 
 const AssetPage = () => {
-  async function handleLogin() {
-    await axiosInstance.get("/auth/kakao");
-  }
+  const KAKAO_LOGIN_URL = process.env.REACT_APP_KAKAO_LOGIN_URL as string;
 
   return (
     <div className=" h-[50vh] w-full flex justify-center items-center">
-      <button onClick={() => handleLogin()}>
+      <Link to={KAKAO_LOGIN_URL}>
         <img src={KakaoLogin} />
-      </button>
+      </Link>
     </div>
   );
 };

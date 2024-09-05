@@ -2,7 +2,6 @@
   "name": "bitrics_fe",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://search.hankyung.com",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@googlemaps/js-api-loader": "^1.16.8",
