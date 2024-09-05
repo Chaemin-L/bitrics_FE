@@ -28,7 +28,11 @@ const NewsPage = () => {
   return (
     <div className="flex flex-col gap-9 h-auto min-h-full">
       <p className="text-white text-xs inline-block">
-        <a href="https://www.hankyung.com/all-news" className="inline-flex">
+        <a
+          href="https://www.hankyung.com/all-news"
+          target="_blank"
+          className="inline-flex"
+        >
           <strong>한국경제신문</strong>
           <svg
             className="w-3 h-3  my-auto mr-1"
