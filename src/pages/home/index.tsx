@@ -113,17 +113,17 @@ const HomePage: React.FC = () => {
                     setSelected={setSelectedFilter}
                   />
                 </div>
-                <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+                <div className="bg-purple-700 text-white mt-4 -mx-[30px]">
                   <CryptoList
                     data={upbitData[selectedFilter.key]}
                     selected={selectedFilter}
                   />
                 </div>
               </div>
-              <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+              <div className="bg-purple-700 text-white mt-4 -mx-[30px]">
                 <MarketCapList data={coinpaprikaData} />
               </div>
-              <div className="bg-purple-600 text-white mt-4 -mx-[30px]">
+              <div className="bg-purple-700 text-white mt-4 -mx-[30px]">
                 <div className="h-[450px] w-full">
                   <Heatmap />
                 </div>
