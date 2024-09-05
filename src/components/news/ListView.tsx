@@ -15,13 +15,14 @@ const ListView = (props: IListView) => {
   const getData = useCallback(async () => {
     setIsLoading(true);
     await axiosInstance
-      .get(encodeURIComponent(`/news?keyword=${selected.label}`))
+      .get(`/news?keyword=${encodeURIComponent(selected.label)}`)
       .then((res) => setNews(res.data as INews[]));
     setIsLoading(false);
   }, [selected]);
 
   useEffect(() => {
     getData();
+    console.log(news);
   }, [selected]);
 
   return (
