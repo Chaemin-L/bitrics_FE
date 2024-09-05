@@ -10,7 +10,7 @@ const NavHeader = () => {
       {/** logo and map */}
       <div className="flex justify-between">
         <Link to="/">
-          <img src={logo} className="w-[155px] h-[26px] hover:cursor-pointer" />
+          <img src={logo} className=" hover:cursor-pointer" />
         </Link>
         <Link to="/map">
           <svg
