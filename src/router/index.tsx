@@ -5,6 +5,7 @@ import NewsPage from "@/pages/news";
 import TermPage from "@/pages/term";
 import MapPage from "@/pages/map";
 import AssetPage from "@/pages/asset";
+import Splash from "@/pages/splash";
 
 type CustomRouteObject = {
   label?: string;
@@ -14,6 +15,12 @@ type CustomRouteObject = {
 export const ROUTES: CustomRouteObject[] = [
   {
     path: "/",
+    element: <Splash />,
+    label: "스플래시",
+    show: false,
+  },
+  {
+    path: "/home",
     element: <HomePage />,
     label: "홈",
     show: true,

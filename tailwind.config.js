@@ -29,6 +29,9 @@ module.exports = {
       boxShadow: {
         sm: "0 4px 4px 0 rgba(0,0,0,0.25)",
       },
+      animation: {
+        fadeOut: "fadeOut 0.1s linear",
+      },
       keyframes: {
         rotation: {
           "0%": {
@@ -36,6 +39,14 @@ module.exports = {
           },
           "100%": {
             transform: "rotate(360deg)",
+          },
+        },
+        fadeOut: {
+          "0%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
           },
         },
       },
