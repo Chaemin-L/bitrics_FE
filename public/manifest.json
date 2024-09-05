@@ -1,6 +1,14 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "id": "/",
+  "orientation": "landscape",
+  "short_name": "Bitrics",
+  "name": "Bitrics",
+  "description": "비트릭스, 나의 가상화폐 자산을 모아 확인해요",
+  "form_factor": "narrow",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2C0C54",
+  "background_color": "#2C0C54",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +26,18 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "shortcuts": [
+    {
+      "name": "Bitrics",
+      "short_name": "Bitrics",
+      "description": "비트릭스, 나의 가상화폐 자산을 모아 확인해요",
+      "url": "/home",
+      "icons": [
+        {
+          "src": "icons/logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }
