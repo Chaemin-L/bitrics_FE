@@ -62,7 +62,6 @@ const CryptoList: React.FC<CryptoListProps> = ({ selected, data }) => {
         <div className="w-1/6 text-right">거래대금</div>
       </div>
       {itemsToShow.map((item, index) => {
-        console.log(item);
         return (
           <div key={index}>
             <div

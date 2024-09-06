@@ -8,8 +8,6 @@ const AssetPage = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   // const KAKAO_LOGIN_URL = process.env.REACT_APP_KAKAO_LOGIN_URL as string;
 
-  console.log(loggedIn);
-
   return !loggedIn ? (
     <div className=" h-[50vh] w-full flex justify-center items-center">
       {/* <Link to={KAKAO_LOGIN_URL}>

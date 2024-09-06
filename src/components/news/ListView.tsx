@@ -22,7 +22,6 @@ const ListView = (props: IListView) => {
 
   useEffect(() => {
     getData();
-    console.log(news);
   }, [selected]);
 
   return (

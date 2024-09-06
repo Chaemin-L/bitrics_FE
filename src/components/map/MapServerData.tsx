@@ -31,7 +31,6 @@ const GoogleMapWithServerData: React.FC = () => {
           lng: marker.lon !== undefined ? marker.lon : marker.lng,
         }));
 
-        console.log("axios markers:", correctedData);
         setMarkers(correctedData);
       } catch (error) {
         console.error("Error axios marker data:", error);
@@ -51,7 +50,6 @@ const GoogleMapWithServerData: React.FC = () => {
             center: { lat: 31.883162, lng: 127.080855 },
             zoom: 5,
           });
-          console.log("Map initialized:", initializedMap);
           setMap(initializedMap);
 
           axiosMarkers();
@@ -66,7 +64,6 @@ const GoogleMapWithServerData: React.FC = () => {
 
   useEffect(() => {
     if (map && markers.length > 0) {
-      console.log("Adding markers:", markers);
       markers.forEach(({ lat, lng, city, name }) => {
         const marker = new google.maps.Marker({
           position: { lat, lng },
